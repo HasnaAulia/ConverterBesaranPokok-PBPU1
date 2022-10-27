@@ -1,0 +1,13 @@
+{
+    "name": "kelompok1/barcode-generator-pbpu",
+    "description": "Sebuah library package untuk men-generate barcode guna menyelesaikan tugas PBPU",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Kelompok1\\Barcode\\": "src/"
+        }
+    }
+}
