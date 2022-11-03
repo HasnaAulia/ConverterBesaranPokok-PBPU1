@@ -82,10 +82,10 @@ class _PackageTestingState extends State<PackageTesting> {
             ),
             ElevatedButton(
               onPressed: () {
-                _controller2.text = Length(num.parse(_controller1.text))
-                    .convertFromUnitXtoUnitY(
-                        from: LengthUnit.meter, to: LengthUnit.kilometer)
-                    .toString();
+                _controller2.text =
+                    Length(num.parse(_controller1.text), LengthUnit.meter)
+                        .convertTo(LengthUnit.kilometer)
+                        .toString();
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity,
