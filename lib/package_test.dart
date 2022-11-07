@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:unit_converter/unit_converter.dart';
 
-class PackageTesting extends StatefulWidget {
-  const PackageTesting({Key? key}) : super(key: key);
+class PackageTesting<T extends BaseQuantity<T>> extends StatefulWidget {
+  final List<Unit<T>> unitList;
+
+  const PackageTesting({Key? key, required this.unitList}) : super(key: key);
 
   @override
-  State<PackageTesting> createState() => _PackageTestingState();
+  State<PackageTesting> createState() => _PackageTestingState<T>();
 }
 
-class _PackageTestingState extends State<PackageTesting> {
+class _PackageTestingState<T extends BaseQuantity<T>>
+    extends State<PackageTesting<T>> {
+  late Unit<T> _selectedUnitFrom;
+  late Unit<T> _selectedUnitTo;
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
+
+  @override
+  void initState() {
+    _selectedUnitFrom = widget.unitList.first;
+    _selectedUnitTo = widget.unitList.first;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +48,23 @@ class _PackageTestingState extends State<PackageTesting> {
                   ),
                 ),
                 const Spacer(),
-                DropdownButton<String>(
-                  items: const [
-                    DropdownMenuItem(
-                      child: Text("Satuan 1"),
-                    )
-                  ],
+                DropdownButton<Unit<T>>(
+                  value: _selectedUnitFrom,
+                  items: List.generate(
+                    widget.unitList.length,
+                    (index) {
+                      return DropdownMenuItem(
+                        value: widget.unitList[index],
+                        child: Text(
+                          widget.unitList[index].symbol,
+                        ),
+                      );
+                    },
+                  ),
                   onChanged: (value) {
-                    setState(() {});
+                    setState(() {
+                      _selectedUnitFrom = value!;
+                    });
                   },
                 ),
               ],
@@ -65,14 +86,23 @@ class _PackageTestingState extends State<PackageTesting> {
                   ),
                 ),
                 const Spacer(),
-                DropdownButton<String>(
-                  items: const [
-                    DropdownMenuItem(
-                      child: Text("Satuan 2"),
-                    )
-                  ],
+                DropdownButton<Unit<T>>(
+                  value: _selectedUnitTo,
+                  items: List.generate(
+                    widget.unitList.length,
+                    (index) {
+                      return DropdownMenuItem(
+                        value: widget.unitList[index],
+                        child: Text(
+                          widget.unitList[index].symbol,
+                        ),
+                      );
+                    },
+                  ),
                   onChanged: (value) {
-                    setState(() {});
+                    setState(() {
+                      _selectedUnitTo = value!;
+                    });
                   },
                 ),
               ],
@@ -82,10 +112,41 @@ class _PackageTestingState extends State<PackageTesting> {
             ),
             ElevatedButton(
               onPressed: () {
-                _controller2.text =
-                    Length(num.parse(_controller1.text), LengthUnit.meter)
-                        .convertTo(LengthUnit.kilometer)
+                String result = '';
+                switch (T) {
+                  case Length:
+                    result = Length(num.parse(_controller1.text),
+                            _selectedUnitFrom as Unit<Length>)
+                        .convertTo(_selectedUnitTo as Unit<Length>)
                         .toString();
+                    break;
+                  case Temperature:
+                    result = Temperature(num.parse(_controller1.text),
+                            _selectedUnitFrom as Unit<Temperature>)
+                        .convertTo(_selectedUnitTo as Unit<Temperature>)
+                        .toString();
+                    break;
+                  case Mass:
+                    result = Mass(num.parse(_controller1.text),
+                            _selectedUnitFrom as Unit<Mass>)
+                        .convertTo(_selectedUnitTo as Unit<Mass>)
+                        .toString();
+                    break;
+                  case Time:
+                    result = Time(num.parse(_controller1.text),
+                            _selectedUnitFrom as Unit<Time>)
+                        .convertTo(_selectedUnitTo as Unit<Time>)
+                        .toString();
+                    break;
+                  case ElectricCurrent:
+                    result = ElectricCurrent(num.parse(_controller1.text),
+                            _selectedUnitFrom as Unit<ElectricCurrent>)
+                        .convertTo(_selectedUnitTo as Unit<ElectricCurrent>)
+                        .toString();
+                    break;
+                  default:
+                }
+                _controller2.text = result;
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity,

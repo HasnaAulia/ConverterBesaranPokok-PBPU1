@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unit_converter/unit_converter.dart';
 
 import 'package_test.dart';
 
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 7,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -58,16 +59,26 @@ class HomePage extends StatelessWidget {
                 icon: Icon(Icons.electric_bolt),
                 text: 'Kuat Arus Listrik',
               ),
+              Tab(
+                icon: Icon(Icons.electric_bolt),
+                text: 'Intensitas Cahaya',
+              ),
+              Tab(
+                icon: Icon(Icons.electric_bolt),
+                text: 'Jumlah Zat',
+              ),
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            PackageTesting(),
-            PackageTesting(),
-            PackageTesting(),
-            PackageTesting(),
-            PackageTesting(),
+            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: LengthUnit.values),
           ],
         ),
       ),
