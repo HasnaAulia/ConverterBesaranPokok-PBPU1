@@ -25,7 +25,6 @@ class Temperature extends BaseQuantity<Temperature> {
             ),
           ],
         ),
-        ConversionNode(unit: TemperatureUnit.reaumur)
       ],
     ),
   );

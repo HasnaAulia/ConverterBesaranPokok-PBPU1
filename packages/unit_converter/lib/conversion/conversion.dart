@@ -8,31 +8,18 @@ class Conversion<T extends BaseQuantity<T>> {
 
   Conversion(this.tree);
 
-  ConversionNode<T> _findNodeOfCorrespondingUnit(
-    Unit<T> unit,
-    ConversionNode<T> node,
-  ) {
-    if (unit == node.unit) return node;
-
-    for (ConversionNode<T> child in node.children) {
-      ConversionNode<T> result = _findNodeOfCorrespondingUnit(unit, child);
-      if (unit == result.unit) return result;
-    }
-    return node;
-  }
-
   // apakah node 'node' mempunyai jalur dari root 'tree'
   bool _hasPath(
-    ConversionNode<T> root,
     ConversionNode<T> node,
+    Unit<T> unit,
     List<ConversionNode<T>> nodesPath,
   ) {
-    nodesPath.add(root);
+    nodesPath.add(node);
 
-    if (identical(root.unit, node.unit)) return true;
+    if (identical(node.unit, unit)) return true;
 
-    for (ConversionNode<T> child in root.children) {
-      if (_hasPath(child, node, nodesPath)) return true;
+    for (ConversionNode<T> child in node.children) {
+      if (_hasPath(child, unit, nodesPath)) return true;
     }
 
     nodesPath.removeLast();
@@ -80,15 +67,12 @@ class Conversion<T extends BaseQuantity<T>> {
     List<ConversionNode<T>> rootFromUnitPath = [];
     List<ConversionNode<T>> rootToUnitPath = [];
 
-    ConversionNode<T> fromNode = _findNodeOfCorrespondingUnit(from, tree.data);
-    ConversionNode<T> toNode = _findNodeOfCorrespondingUnit(to, tree.data);
-
-    if (_hasPath(tree.data, fromNode, rootFromUnitPath) &&
-        _hasPath(tree.data, toNode, rootToUnitPath)) {}
-    _trimToLowestCommonAncestor(rootFromUnitPath, rootToUnitPath);
-
-    result = count(result, rootFromUnitPath.reversed.toList());
-    result = count(result, rootToUnitPath);
+    if (_hasPath(tree.data, from, rootFromUnitPath) &&
+        _hasPath(tree.data, to, rootToUnitPath)) {
+      _trimToLowestCommonAncestor(rootFromUnitPath, rootToUnitPath);
+      result = count(result, rootFromUnitPath.reversed.toList());
+      result = count(result, rootToUnitPath);
+    }
 
     return result;
   }
