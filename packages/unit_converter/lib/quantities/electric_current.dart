@@ -21,10 +21,6 @@ class ElectricCurrent extends BaseQuantity<ElectricCurrent> {
         unit:ElectricCurrentUnit.statampere,
         coefficientProduct: 2997924536.8,
       ),
-      ConversionNode<ElectricCurrent>(
-        unit:ElectricCurrentUnit.miliampere,
-        coefficientProduct: pow(10, -1)
-      ),
     ]));
 
     ElectricCurrent(num value, Unit<ElectricCurrent> unit)
