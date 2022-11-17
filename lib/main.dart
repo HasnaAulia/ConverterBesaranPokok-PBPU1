@@ -73,10 +73,10 @@ class HomePage extends StatelessWidget {
         body: const TabBarView(
           children: [
             PackageTesting(unitList: LengthUnit.values),
-            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: MassUnit.values),
             PackageTesting(unitList: TemperatureUnit.values),
-            PackageTesting(unitList: LengthUnit.values),
-            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: TimeUnit.values),
+            PackageTesting(unitList: ElectricCurrentUnit.values),
             PackageTesting(unitList: LengthUnit.values),
             PackageTesting(unitList: LengthUnit.values),
           ],

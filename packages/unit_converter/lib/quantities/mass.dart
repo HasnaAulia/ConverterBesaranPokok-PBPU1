@@ -56,11 +56,11 @@ class Mass extends BaseQuantity<Mass> {
     ),
     ConversionNode<Mass>(
       unit: MassUnit.ounce,
-      coefficientProduct: pow(10, -6), //belom
+      coefficientProduct: 35.274, //belom
     ),
     ConversionNode<Mass>(
       unit: MassUnit.pound,
-      coefficientProduct: pow(10, -6), //belom
+      coefficientProduct: 2.205, //belom
     ),
   ]));
 
