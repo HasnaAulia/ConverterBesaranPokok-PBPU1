@@ -144,6 +144,13 @@ class _PackageTestingState<T extends BaseQuantity<T>>
                         .convertTo(_selectedUnitTo as Unit<ElectricCurrent>)
                         .toString();
                     break;
+                  case IntensityOfLight:
+                    result = IntensityOfLight(num.parse(_controller1.text),
+                            _selectedUnitFrom as Unit<IntensityOfLight>)
+                        .convertTo(_selectedUnitTo as Unit<IntensityOfLight>)
+                        .toString();
+                    break;
+                 
                   default:
                 }
                 _controller2.text = result;
