@@ -1,15 +1,13 @@
-import 'dart:math';
-
-import 'package:unit_converter/unit_converter.dart';
-
 import '../conversion/conversion_node.dart';
 import '../conversion/conversion_tree.dart';
+import '../unit_converter.dart';
 import '../units/intensity_of_light_unit.dart';
 import '../units/unit.dart';
 import 'base_quantity.dart';
+import 'dart:math';
 
 class IntensityOfLight extends BaseQuantity<IntensityOfLight> {
-  static final ConversionTree<IntensityOfLight> _tree = ConversionTree(
+  static final ConversionTree<IntensityOfLight> _tree = ConversionTree<IntensityOfLight>(
     data: ConversionNode<IntensityOfLight>(
       unit: IntensityOfLightUnit.candela,
       children: [
