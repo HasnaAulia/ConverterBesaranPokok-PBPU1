@@ -25,6 +25,8 @@ class IntensityOfLight extends BaseQuantity<IntensityOfLight> {
   ),
   );
 
+  IntensityOfLight({required super.value, required super.unit});
+
   @override
   num convertTo(
     Unit<IntensityOfLight> to,
