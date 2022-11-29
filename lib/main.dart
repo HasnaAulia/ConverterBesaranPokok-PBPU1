@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
             PackageTesting(unitList: TimeUnit.values),
             PackageTesting(unitList: ElectricCurrentUnit.values),
             PackageTesting(unitList: IntensityOfLightUnit.values),
-            PackageTesting(unitList: LengthUnit.values),
+            PackageTesting(unitList: AmountOfSubstanceUnit.values),
           ],
         ),
       ),
