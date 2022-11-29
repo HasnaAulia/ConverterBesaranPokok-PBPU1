@@ -1,12 +1,5 @@
 import 'package:unit_converter/unit_converter.dart';
 
-import '../conversion/conversion.dart';
-import '../conversion/conversion_node.dart';
-import '../conversion/conversion_tree.dart';
-import '../units/time_unit.dart';
-import '../units/unit.dart';
-import 'base_quantity.dart';
-
 class Time extends BaseQuantity<Time> {
   static final ConversionTree<Time> _tree = ConversionTree<Time>(
     data: ConversionNode<Time>(
@@ -36,7 +29,7 @@ class Time extends BaseQuantity<Time> {
     List<ConversionNode<Time>> nodes = _tree.data.getTreeAsList();
     List<String> units = [];
 
-    for (ConversionNode<Length> node in nodes) {
+    for (ConversionNode<Time> node in nodes) {
       units.add(node.unit.symbol);
     }
     return units;
