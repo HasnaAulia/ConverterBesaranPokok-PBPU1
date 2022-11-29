@@ -36,7 +36,7 @@ class Time extends BaseQuantity<Time> {
     List<ConversionNode<Time>> nodes = _tree.data.getTreeAsList();
     List<String> units = [];
 
-    for (ConversionNode<Length> node in nodes) {
+    for (ConversionNode<Time> node in nodes) {
       units.add(node.unit.symbol);
     }
     return units;
