@@ -1,7 +1,7 @@
 import '../quantities/amount_of_substance.dart';
 import 'unit.dart';
 
-enum AmountOfSubstanceUnit implements Unit<AmountOfSubstanceCurrent> {
+enum AmountOfSubstanceUnit implements Unit<AmountOfSubstance> {
   mole('mol'),
   kilomole('kmol'),
   milimole('mmol'),

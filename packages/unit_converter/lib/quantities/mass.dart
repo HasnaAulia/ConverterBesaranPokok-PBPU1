@@ -82,14 +82,4 @@ class Mass extends BaseQuantity<Mass> {
   ) {
     return Conversion<Mass>(_tree).convert(super.value, super.unit, to);
   }
-
-  static List<String> getAllUnits() {
-    List<ConversionNode<Mass>> nodes = _tree.data.getTreeAsList();
-    List<String> units = [];
-
-    for (ConversionNode<Mass> node in nodes) {
-      units.add(node.unit.symbol);
-    }
-    return units;
-  }
 }

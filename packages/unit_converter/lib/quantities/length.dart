@@ -94,14 +94,4 @@ class Length extends BaseQuantity<Length> {
   ) {
     return Conversion<Length>(_tree).convert(super.value, super.unit, to);
   }
-
-  static List<String> getAllUnits() {
-    List<ConversionNode<Length>> nodes = _tree.data.getTreeAsList();
-    List<String> units = [];
-
-    for (ConversionNode<Length> node in nodes) {
-      units.add(node.unit.symbol);
-    }
-    return units;
-  }
 }

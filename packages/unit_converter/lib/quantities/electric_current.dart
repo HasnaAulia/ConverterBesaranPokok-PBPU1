@@ -12,8 +12,9 @@ class ElectricCurrent extends BaseQuantity<ElectricCurrent> {
           coefficientProduct: pow(10, -3),
         ),
         ConversionNode<ElectricCurrent>(
-            unit: ElectricCurrentUnit.miliampere,
-            coefficientProduct: pow(10, 3)),
+          unit: ElectricCurrentUnit.miliampere,
+          coefficientProduct: pow(10, 3),
+        ),
         ConversionNode<ElectricCurrent>(
           unit: ElectricCurrentUnit.statampere,
           coefficientProduct: 2997924536.8,
@@ -34,15 +35,5 @@ class ElectricCurrent extends BaseQuantity<ElectricCurrent> {
   ) {
     return Conversion<ElectricCurrent>(_tree)
         .convert(super.value, super.unit, to);
-  }
-
-  static List<String> getAllUnits() {
-    List<ConversionNode<ElectricCurrent>> nodes = _tree.data.getTreeAsList();
-    List<String> units = [];
-
-    for (ConversionNode<ElectricCurrent> node in nodes) {
-      units.add(node.unit.symbol);
-    }
-    return units;
   }
 }

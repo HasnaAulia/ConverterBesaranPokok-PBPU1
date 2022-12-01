@@ -7,21 +7,21 @@ import '../units/amount_of_substance_unit.dart';
 import '../units/unit.dart';
 import 'base_quantity.dart';
 
-class AmountOfSubstanceCurrent extends BaseQuantity<AmountOfSubstanceCurrent> {
-  static final ConversionTree<AmountOfSubstanceCurrent> _tree =
-      ConversionTree<AmountOfSubstanceCurrent>(
-    data: ConversionNode<AmountOfSubstanceCurrent>(
+class AmountOfSubstance extends BaseQuantity<AmountOfSubstance> {
+  static final ConversionTree<AmountOfSubstance> _tree =
+      ConversionTree<AmountOfSubstance>(
+    data: ConversionNode<AmountOfSubstance>(
       unit: AmountOfSubstanceUnit.mole,
       children: [
-        ConversionNode<AmountOfSubstanceCurrent>(
+        ConversionNode<AmountOfSubstance>(
           unit: AmountOfSubstanceUnit.kilomole,
           coefficientProduct: pow(10, -3),
         ),
-        ConversionNode<AmountOfSubstanceCurrent>(
+        ConversionNode<AmountOfSubstance>(
           unit: AmountOfSubstanceUnit.milimole,
           coefficientProduct: pow(10, 3),
         ),
-        ConversionNode<AmountOfSubstanceCurrent>(
+        ConversionNode<AmountOfSubstance>(
           unit: AmountOfSubstanceUnit.poundmole,
           coefficientProduct: 1 / 453.59237,
         ),
@@ -29,7 +29,7 @@ class AmountOfSubstanceCurrent extends BaseQuantity<AmountOfSubstanceCurrent> {
     ),
   );
 
-  AmountOfSubstanceCurrent(num value, Unit<AmountOfSubstanceCurrent> unit)
+  AmountOfSubstance(num value, Unit<AmountOfSubstance> unit)
       : super(
           value: value,
           unit: unit,
@@ -37,20 +37,9 @@ class AmountOfSubstanceCurrent extends BaseQuantity<AmountOfSubstanceCurrent> {
 
   @override
   num convertTo(
-    Unit<AmountOfSubstanceCurrent> to,
+    Unit<AmountOfSubstance> to,
   ) {
-    return Conversion<AmountOfSubstanceCurrent>(_tree)
+    return Conversion<AmountOfSubstance>(_tree)
         .convert(super.value, super.unit, to);
-  }
-
-  static List<String> getAllUnits() {
-    List<ConversionNode<AmountOfSubstanceCurrent>> nodes =
-        _tree.data.getTreeAsList();
-    List<String> units = [];
-
-    for (ConversionNode<AmountOfSubstanceCurrent> node in nodes) {
-      units.add(node.unit.symbol);
-    }
-    return units;
   }
 }
