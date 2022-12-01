@@ -16,6 +16,34 @@ class Time extends BaseQuantity<Time> {
           unit: TimeUnit.minute,
           coefficientProduct: 1 / 60,
         ),
+        ConversionNode<Time>(
+          unit: TimeUnit.hour,
+          coefficientProduct: 1 / 3600,
+        ),
+        ConversionNode<Time>(
+          unit: TimeUnit.day,
+          coefficientProduct: 1 / 86400,
+        ),
+        ConversionNode<Time>(
+          unit: TimeUnit.week,
+          coefficientProduct: 1 / 604800,
+        ),
+        ConversionNode<Time>(
+          unit: TimeUnit.month,
+          coefficientProduct: 60 / 43800,
+        ),
+        ConversionNode<Time>(
+          unit: TimeUnit.year,
+          coefficientProduct: 60 / 525600,
+        ),
+        ConversionNode<Time>(
+          unit: TimeUnit.decade,
+          coefficientProduct: 3600 / 87600,
+        ),
+        ConversionNode<Time>(
+          unit: TimeUnit.century,
+          coefficientProduct: 3600 / 876000,
+        ),
       ],
     ),
   );
@@ -23,7 +51,7 @@ class Time extends BaseQuantity<Time> {
       : super(
           value: value,
           unit: unit,
-        ) {}
+        );
 
   @override
   num convertTo(
